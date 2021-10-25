@@ -2,7 +2,16 @@ class ModelCrud {
     constructor(model) {
         this.model = model;
     }
-    getAll = (req, res, next) => {
+    getAll = async (req, res, next) => {
+        const {name} = req.query;
+        if(name){
+            const filter = await this.model.findAll({
+                where:{
+                    name:name
+                }
+            });
+            return res.status(200).json(filter.slice(0,15));
+        }
         this.model.findAll() 
             .then(results => res.status(200).json(results))
             .catch(error => next(error));
