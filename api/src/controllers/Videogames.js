@@ -34,29 +34,31 @@ module.exports = {
                     });
                     return res.status(200).json(resultPromiseDB.concat(resultPromiseApi).slice(0, 15));
                 })
+                .catch(error=>next(error));
         }
         else {
-            resultPromiseDB = await Videogame.findAll();
-            resultPromiseA = axios.get(`https://api.rawg.io/api/games?key=${key}`);
-            resultPromiseB = axios.get(`https://api.rawg.io/api/games?key=${key}`);
-            resultPromiseC = axios.get(`https://api.rawg.io/api/games?key=${key}`);
-            Promise.all([resultPromiseDB, resultPromiseA, resultPromiseB, resultPromiseC])
-                .then(response => {
-                    let [resultPromiseDB, resultPromiseA, resultPromiseB, resultPromiseC] = response;
-                     resultPromiseApi = [...resultPromiseA.data.results, ...resultPromiseB.data.results, ...resultPromiseC.data.results]
-                     resultPromiseApi = resultPromiseApi.map(obj => {
-                        return {
-                            name: obj.name,
-                            description: obj.description,
-                            launchDate: obj.released,
-                            rating: obj.rating,
-                            platforms: obj.platforms,
-                            backgroundImage: obj.background_image
-                        }
-                    })
-                    return res.status(200).json(resultPromiseDB.concat(resultPromiseApi));
-                })
-                .catch(error => next(error));
+            try{
+                resultPromiseDB = await Videogame.findAll();
+            resultPromiseA = axios.get(`https://api.rawg.io/api/games?key=${key}&page_size=40&page=1`);
+            resultPromiseB = axios.get(`https://api.rawg.io/api/games?key=${key}&page_size=40&page=2`);
+            resultPromiseC = axios.get(`https://api.rawg.io/api/games?key=${key}&page_size=20&page=3`);
+            resultPromiseApi = await Promise.all([resultPromiseDB, resultPromiseA, resultPromiseB, resultPromiseC]);
+            [resultPromiseDB, resultPromiseA, resultPromiseB, resultPromiseC] = resultPromiseApi;
+            resultPromiseApi = [...resultPromiseA.data.results, ...resultPromiseB.data.results, ...resultPromiseC.data.results]
+            resultPromiseApi = resultPromiseApi.map(obj=>{
+                return {
+                    name: obj.name,
+                    description: obj.description,
+                    launchDate: obj.released,
+                    rating: obj.rating,
+                    platforms: obj.platforms,
+                    backgroundImage: obj.background_image
+                }
+            })
+            return res.status(200).json(resultPromiseDB.concat(resultPromiseApi));
+            }catch(error){
+                next(error);
+            }
         }
     },
     getVideogame: async (req, res, next) => {
