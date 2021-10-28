@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios').default;
 const { key } = process.env;
-const { Videogame, Genre } = require('../db.js');
+const { Videogame, Genre, Platform} = require('../db.js');
 //const controllerCrud = new ModelCrud({Videogame, Genre});
 module.exports = {
     getVideogames: async (req, res, next) => {
@@ -95,14 +95,41 @@ module.exports = {
         }
 
     },
-    insertVideogame: (req, res, next) => {
+    insertVideogame: async (req, res, next) => {
+        const {name, description, genres, launchDate, rating, platforms} = req.body;
         const object = {
-            ...req.body
+            name,
+            description,
+            launchDate,
+            rating,
         }
         return Videogame.create({
             ...object
         })
-            .then(object => res.status(200).json(object))
+            .then(async (object) =>{
+                 await Promise.all(
+                 genres.map(async(genre)=>{
+                       const result = await Genre.findOne({
+                           where:{
+                               name: genre
+                           }
+                       })
+                       if(result)
+                       await object.addGenre(result.id);
+                   }),
+                   platforms.map(async(platform)=>{
+                    const result = await Platform.findOne({
+                        where:{
+                            name: platform
+                        }
+                    })
+                    if(result)
+                    await object.addPlatform(result.id);
+                }) 
+                 );
+                
+                res.status(200).json(object)
+            })
             .catch(error => next(error));
     }
 
