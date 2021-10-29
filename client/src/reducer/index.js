@@ -1,9 +1,9 @@
 import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS} from '../actions/constant.js';
-let initialState  = {
+const initialState = {
     videogames: []
 }
 
-export default function(state = initialState, {type,payload}){
+export default function reducer(state = initialState, {type,payload}){
     switch (type) {
         case GET_VIDEOGAMES:
             return{

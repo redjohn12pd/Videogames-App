@@ -1,10 +1,18 @@
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-
-function App() {
+import NavBar from './components/NavBar';
+import Home from './components/Home';
+const App = ()=> {
   return (
-    <div className="App">
-      <h1>Henry Videogames</h1>
-    </div>
+    <React.Fragment>
+    <NavBar/>
+    <Switch>
+      <Route exact path = "/">
+        <Home/>
+      </Route>
+    </Switch>
+    </React.Fragment>
   );
 }
 
