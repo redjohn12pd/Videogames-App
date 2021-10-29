@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios').default;
-const { key } = process.env;
+const { KEY } = process.env;
 const { Videogame, Genre, Platform} = require('../db.js');
 //const controllerCrud = new ModelCrud({Videogame, Genre});
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
                 },
                 limit: 15
             });
-            resultPromiseApi = axios.get(`https://api.rawg.io/api/games?search=${name}&key=${key}`);
+            resultPromiseApi = axios.get(`https://api.rawg.io/api/games?search=${name}&key=${KEY}`);
             Promise.all([resultPromiseDB, resultPromiseApi])
                 .then(response => {
                     let [resultPromiseDB, resultPromiseApi] = response;
@@ -39,9 +39,9 @@ module.exports = {
         else {
             try{
                 resultPromiseDB = await Videogame.findAll();
-            resultPromiseA = axios.get(`https://api.rawg.io/api/games?key=${key}&page_size=40&page=1`);
-            resultPromiseB = axios.get(`https://api.rawg.io/api/games?key=${key}&page_size=40&page=2`);
-            resultPromiseC = axios.get(`https://api.rawg.io/api/games?key=${key}&page_size=20&page=3`);
+            resultPromiseA = axios.get(`https://api.rawg.io/api/games?key=${KEY}&page_size=40&page=1`);
+            resultPromiseB = axios.get(`https://api.rawg.io/api/games?key=${KEY}&page_size=40&page=2`);
+            resultPromiseC = axios.get(`https://api.rawg.io/api/games?key=${KEY}&page_size=20&page=3`);
             resultPromiseApi = await Promise.all([resultPromiseDB, resultPromiseA, resultPromiseB, resultPromiseC]);
             [resultPromiseDB, resultPromiseA, resultPromiseB, resultPromiseC] = resultPromiseApi;
             resultPromiseApi = [...resultPromiseA.data.results, ...resultPromiseB.data.results, ...resultPromiseC.data.results]
@@ -65,7 +65,7 @@ module.exports = {
         try {
             const id = req.params.id;
             if (id.length < 8) {
-                axios.get(`https://api.rawg.io/api/games/${id}?key=${key}`)
+                axios.get(`https://api.rawg.io/api/games/${id}?key=${KEY}`)
                     .then(result => result.data)
                     .then(data => {
                         const videoGame = {
