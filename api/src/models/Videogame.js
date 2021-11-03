@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
     },
     rating:{
       type: DataTypes.FLOAT
+    },
+    backgroundImage:{
+      type: DataTypes.STRING,
+      allowNull: true
     }
 
   },{

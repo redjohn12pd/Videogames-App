@@ -1,19 +1,30 @@
 import React from 'react';
-import {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import { getVideogames } from '../../actions';
+import { useEffect, useState } from 'react';
+import {useDispatch , useSelector} from 'react-redux';
+import { getVideogames, getGenres} from '../../actions';
+import SideBar from '../SideBar';
+import Pagination from '../Pagination';
+import DinamicBanner from '../DinamicBanner';
+import Filter from '../Filter';
 import style from './styles.module.css';
-const Home = ()=>{
-    const videogames = useSelector((state)=>state.videogames);
+const Home = () => {
+    const genres = useSelector(state=>state.genres);
+    const videogames = useSelector(state=>state.videogames);
     const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(getVideogames('forza'));
-    },[])
-    return(
-        <div>
-            {videogames && videogames.map(videogame=>
-             <h1>{videogame.name}</h1>  
-                )}
+    useEffect(() => {
+        dispatch(getGenres());
+        dispatch(getVideogames());
+    }, [dispatch])
+    return (
+        <div className={style.container}>
+                <SideBar title = {"Filter By"} width={300} height={"100vh"}>
+                <Filter genres = {genres}/>
+                </SideBar>
+                <div className = {style.row}>
+                {videogames.length>0&&<DinamicBanner data = {videogames}/>}
+                {videogames.length>0&&<Pagination title = {"Games"} data = {videogames}/>}
+                </div>
+                
         </div>
     );
 }

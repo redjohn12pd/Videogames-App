@@ -1,0 +1,22 @@
+.cover {
+    position: relative;
+    height: 520px;
+    width: 100%;
+    margin-top: 80.2px;
+}
+.overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, .5);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.textCover {
+    padding-top: 10%;
+    font-size: 60px;
+}
+.titleCover {
+    color: rgb(248, 240, 240);
+    text-align: center;
+}

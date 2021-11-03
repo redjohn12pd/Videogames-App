@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+
+}
+.row{
+    width: 100%;
+}
+.containerSidebar{
+    display: inline;
+}
+

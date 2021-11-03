@@ -1,0 +1,43 @@
+.containerFilter{
+    display:flex;
+    height: 100%;
+    flex-direction: column;
+}
+select{
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: #5c6664;
+    flex: 1;
+    padding: 0 .5em;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+ }
+ .select {
+    margin-top: 10px;
+    position: relative;
+    display: flex;
+    width: 250px;
+    height: 40px;
+    line-height: 3;
+    background: #5c6664;
+    overflow: hidden;
+    border-radius: .25em;
+ }
+ .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #2b2e2e;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+ }
+ .item{
+    margin-bottom: 15%;
+ }

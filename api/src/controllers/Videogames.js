@@ -3,6 +3,23 @@ const axios = require('axios').default;
 const { KEY } = process.env;
 const { Videogame, Genre, Platform} = require('../db.js');
 //const controllerCrud = new ModelCrud({Videogame, Genre});
+const filterVideogames = (videogames, query)=>{
+    return videogames.filter(videogame=>{
+        for (const key in query) {
+            if(key === 'genre'){
+                return videogame.genre === query[key];
+            }
+            
+            if(key === 'showVideogames'){
+                if(query[key] === 'created'){
+                    return videogame.id,length<8;
+                }else{
+                    return videogame.id,length>8;
+                }
+            }
+        }
+    })
+}
 module.exports = {
     getVideogames: async (req, res, next) => {
         const { name } = req.query;
