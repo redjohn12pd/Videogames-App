@@ -1,4 +1,5 @@
-import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS} from './constant.js';
+import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS,
+FILTER_VIDEOGAMES} from './constant.js';
 const axios = require('axios').default;
 const URL = "http://localhost:3001/api";
 
@@ -14,7 +15,7 @@ export function getGenres(){
 
 export function getVideogames(payload){
     return function(dispatch){
-        axios.get(`${URL}/videogames${payload ? "?name=" + payload:""}`)
+        axios.get(`${URL}/videogames${payload ? "?"+ payload.type+"=" + payload.value:""}`)
         .then(videogames=>{
             dispatch({type: GET_VIDEOGAMES,payload:videogames.data})
         });
@@ -26,6 +27,15 @@ export function getVideogame(payload){
         .then(videogame=>{
             dispatch({type: GET_VIDEOGAME,payload:videogame})
         });
+    }
+}
+export function filterVideogames(payload){
+    return function(dispatch){
+        console.log(payload.videogames);
+        axios.get(`${URL}/videogames/filter?genre=${payload.genre}`,{hola:"hola"})
+        .then(videogames=>{
+            dispatch({type: GET_VIDEOGAME,payload:videogames})
+        })
     }
 }
 

@@ -13,12 +13,12 @@ const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getGenres());
-        dispatch(getVideogames());
+        dispatch(getVideogames({type: "name", value: "Naruto"}));
     }, [dispatch])
     return (
         <div className={style.container}>
                 <SideBar title = {"Filter By"} width={300} height={"100vh"}>
-                <Filter genres = {genres}/>
+                <Filter genres = {genres} videogames = { videogames }/>
                 </SideBar>
                 <div className = {style.row}>
                 {videogames.length>0&&<DinamicBanner data = {videogames}/>}

@@ -1,7 +1,8 @@
-import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS} from '../actions/constant.js';
+import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS, FILTER_VIDEOGAMES} from '../actions/constant.js';
 const initialState = {
     videogames: [],
-    genres: []
+    genres: [],
+    filterVideogames:[]
 }
 
 export default function reducer(state = initialState, action){
@@ -16,6 +17,12 @@ export default function reducer(state = initialState, action){
                 ...state,
                 videogames: action.payload
             };
+
+        case FILTER_VIDEOGAMES:
+            return{
+                ...state,
+                filterVideogames: action.payload
+            }
         default:
             return state;
     }

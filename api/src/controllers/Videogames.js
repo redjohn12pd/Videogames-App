@@ -3,35 +3,32 @@ const axios = require('axios').default;
 const { KEY } = process.env;
 const { Videogame, Genre, Platform} = require('../db.js');
 //const controllerCrud = new ModelCrud({Videogame, Genre});
-const filterVideogames = (videogames, query)=>{
-    return videogames.filter(videogame=>{
-        for (const key in query) {
-            if(key === 'genre'){
-                return videogame.genre === query[key];
-            }
-            
-            if(key === 'showVideogames'){
-                if(query[key] === 'created'){
-                    return videogame.id,length<8;
-                }else{
-                    return videogame.id,length>8;
-                }
-            }
-        }
+const filterVideogames = (videogames, genre)=>{
+    const filter = [];
+    videogames.forEach(game=>{
+        game.genres.forEach(gen=>{
+            if(gen.name===genre)
+            filter.push(game)
+        })
     })
+    return filter;
 }
 module.exports = {
     getVideogames: async (req, res, next) => {
-        const { name } = req.query;
+        const { name, genre } = req.query;
         let resultPromiseApi
         let resultPromiseA;
         let resultPromiseB;
         let resultPromiseC;
         let resultPromiseDB;
+        let allVideogames;
         if (name) {
             resultPromiseDB = await Videogame.findAll({
                 where: {
                     name: name
+                },
+                include:{
+                    model: Genre
                 },
                 limit: 15
             });
@@ -46,16 +43,22 @@ module.exports = {
                             launchDate: obj.released,
                             rating: obj.rating,
                             platforms: obj.platforms,
+                            genres: obj.genres,
                             backgroundImage: obj.background_image
                         }
                     });
-                    return res.status(200).json(resultPromiseDB.concat(resultPromiseApi).slice(0, 15));
+                    allVideogames = resultPromiseDB.concat(resultPromiseApi).slice(0,15);
+                    return res.status(200).json(allVideogames);
                 })
                 .catch(error=>next(error));
         }
         else {
             try{
-                resultPromiseDB = await Videogame.findAll();
+                resultPromiseDB = await Videogame.findAll({
+                    include:{
+                        model: Genre
+                    }
+                });
             resultPromiseA = axios.get(`https://api.rawg.io/api/games?key=${KEY}&page_size=40&page=1`);
             resultPromiseB = axios.get(`https://api.rawg.io/api/games?key=${KEY}&page_size=40&page=2`);
             resultPromiseC = axios.get(`https://api.rawg.io/api/games?key=${KEY}&page_size=20&page=3`);
@@ -69,10 +72,16 @@ module.exports = {
                     launchDate: obj.released,
                     rating: obj.rating,
                     platforms: obj.platforms,
+                    genres: obj.genres,
                     backgroundImage: obj.background_image
                 }
             })
-            return res.status(200).json(resultPromiseDB.concat(resultPromiseApi));
+            allVideogames = resultPromiseDB.concat(resultPromiseApi);
+                    if(genre){
+                        allVideogames = filterVideogames(allVideogames, genre);
+                       
+                    }
+             return res.status(200).json(allVideogames);
             }catch(error){
                 next(error);
             }
