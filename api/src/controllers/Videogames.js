@@ -38,6 +38,7 @@ module.exports = {
                     let [resultPromiseDB, resultPromiseApi] = response;
                     resultPromiseApi = resultPromiseApi.data.results.map(obj=>{
                         return {
+                            id: obj.id,
                             name: obj.name,
                             description: obj.description,
                             launchDate: obj.released,
@@ -67,6 +68,7 @@ module.exports = {
             resultPromiseApi = [...resultPromiseA.data.results, ...resultPromiseB.data.results, ...resultPromiseC.data.results]
             resultPromiseApi = resultPromiseApi.map(obj=>{
                 return {
+                    id: obj.id,
                     name: obj.name,
                     description: obj.description,
                     launchDate: obj.released,
@@ -77,7 +79,7 @@ module.exports = {
                 }
             })
             allVideogames = resultPromiseDB.concat(resultPromiseApi);
-                    if(genre){
+                    if(genre && genre !== 'All'){
                         allVideogames = filterVideogames(allVideogames, genre);
                        
                     }
@@ -122,12 +124,13 @@ module.exports = {
 
     },
     insertVideogame: async (req, res, next) => {
-        const {name, description, genres, launchDate, rating, platforms} = req.body;
+        const {name, description, genres, launchDate, rating, platforms,backgroundImage} = req.body;
         const object = {
             name,
             description,
             launchDate,
             rating,
+            backgroundImage
         }
         return Videogame.create({
             ...object

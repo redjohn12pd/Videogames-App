@@ -30,12 +30,9 @@ export function getVideogame(payload){
     }
 }
 export function filterVideogames(payload){
-    return function(dispatch){
-        console.log(payload.videogames);
-        axios.get(`${URL}/videogames/filter?genre=${payload.genre}`,{hola:"hola"})
-        .then(videogames=>{
-            dispatch({type: GET_VIDEOGAME,payload:videogames})
-        })
+    return{
+        type: FILTER_VIDEOGAMES,
+        payload
     }
 }
 
