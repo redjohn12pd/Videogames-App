@@ -1,5 +1,5 @@
 import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS,
-FILTER_VIDEOGAMES} from './constant.js';
+FILTER_VIDEOGAMES, SORT_VIDEOGAMES} from './constant.js';
 const axios = require('axios').default;
 const URL = "http://localhost:3001/api";
 
@@ -35,4 +35,9 @@ export function filterVideogames(payload){
         payload
     }
 }
-
+export function sortVideogames(payload){
+    return{
+        type: SORT_VIDEOGAMES,
+        payload
+    }
+}

@@ -2,10 +2,12 @@ import React from 'react';
 import style from './styles.module.css';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {getVideogames, filterVideogames} from '../../actions'
+import {getVideogames, filterVideogames, sortVideogames} from '../../actions'
 const Filter = ({genres, videogames}) => {
     const dispatch = useDispatch();
     const [showVideogames, setShowVideogames] = useState("");
+    const [sortBy, setSortBy] = useState("");
+    const [sortingOrder, setSortingOrder] = useState("");
     const handleOnChange = (e)=>{
         const value = e.target.value;
         const name = e.target.name
@@ -18,10 +20,13 @@ const Filter = ({genres, videogames}) => {
             setShowVideogames(value)
         }
         else if(name === "sortBy"){
-            console.log(e.target.value)
+            dispatch(sortVideogames({name,value}))
+            setSortBy(value)
+            setSortingOrder("ascending")
         }
-        else{
-            console.log(e.target.value)
+        else if(name === "sortingOrder"){
+            dispatch(sortVideogames({name,value,sortBy}))
+            setSortingOrder(value)
         }
     }
 
@@ -76,12 +81,14 @@ const Filter = ({genres, videogames}) => {
             <div className={style.item}>
                 <h3>Sorting Order</h3>
                 <div className={style.selection}>
-                        <input type="radio" name = "sortingOrder" value = "ascending" onChange = {(e)=>handleOnChange(e)}/>
+                        <input type="radio" name = "sortingOrder" value = "ascending" 
+                        checked = {sortingOrder === 'ascending'} onChange = {(e)=>handleOnChange(e)}/>
                         <label> Ascending </label>
                     </div>
                 <div className={style.radioButtons}>
                     <div className={style.selection}>
-                        <input type="radio" name = "sortingOrder" value = "descending" onChange = {(e)=>handleOnChange(e)}/>
+                        <input type="radio" name = "sortingOrder" value = "descending" 
+                        checked = {sortingOrder === 'descending'} onChange = {(e)=>handleOnChange(e)}/>
                         <label>Descending</label>
                     </div>
                 </div>

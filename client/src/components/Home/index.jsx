@@ -13,7 +13,7 @@ const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getGenres());
-        dispatch(getVideogames({type: "name", value: "Naruto"}));
+        dispatch(getVideogames());
     }, [dispatch])
     return (
         <div className={style.container}>

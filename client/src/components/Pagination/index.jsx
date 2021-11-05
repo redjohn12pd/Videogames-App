@@ -17,8 +17,6 @@ const renderData = (title,data) => {
 };
 
 function Pagination(props) {
-  const [data, setData] = useState(props.data);
-
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(15);
 
@@ -47,7 +45,7 @@ function Pagination(props) {
           key={number}
           id={number}
           onClick={handleClick}
-          className={currentPage == number ? "active" : null}
+          className={currentPage === number ? style.active : null}
         >
           {number}
         </li>
