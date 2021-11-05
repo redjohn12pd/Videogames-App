@@ -1,0 +1,35 @@
+.form{
+    width: 40%;
+    padding: 20px;
+    margin-top: 80px;
+    background-color: rgba(0, 0, 0, 0.808);
+}
+.formItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 8%;
+    width: 85%;
+}
+.formItem input{
+    height: 25px;
+}
+.formItem select{
+    height: 40px;
+    max-width:  60px;
+    margin-right: 127px;
+    text-align: center;
+}
+.formItem label{
+    margin-bottom: 5px;
+}
+.containerSelects{
+    display: flex;
+}
+.select{
+    margin-right: 17%; 
+}
+.title{
+    margin-bottom: 10px;
+    text-align: center;
+}

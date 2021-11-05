@@ -12,8 +12,12 @@ const Filter = ({genres, videogames}) => {
         const value = e.target.value;
         const name = e.target.name
         if(name === "genre"){
+            console.log(value)
+            value === 'All' ? dispatch(getVideogames()):
+            dispatch(getVideogames({type:"genre", value:value}));
             setShowVideogames("showAll")
-            dispatch(getVideogames({type:"genre", value:value}))
+            setSortBy("")
+            setSortingOrder("")
         }
         else if(name === "showVideogames"){
             dispatch(filterVideogames({name,value}))
@@ -25,7 +29,12 @@ const Filter = ({genres, videogames}) => {
             setSortingOrder("ascending")
         }
         else if(name === "sortingOrder"){
-            dispatch(sortVideogames({name,value,sortBy}))
+            if(sortBy === ''){
+                setSortBy('rating');
+                dispatch(sortVideogames({name,value,sortBy:'rating'}));
+            }else{
+                dispatch(sortVideogames({name,value,sortBy}));
+            }
             setSortingOrder(value)
         }
     }
@@ -38,8 +47,8 @@ const Filter = ({genres, videogames}) => {
                     <select name = {"genre"} onChange = {(e)=>handleOnChange(e)}>
                         <option value ={'All'}>All Genres</option>
                         {
-                            genres && genres.map(genre => 
-                                <option value={genre.name}>{genre.name}</option>
+                            genres && genres.map((genre, i) => 
+                                <option key ={i} value={genre.name}>{genre.name}</option>
                             )
                         }
                     </select>
@@ -69,11 +78,13 @@ const Filter = ({genres, videogames}) => {
                 <h3>Sort By</h3>
                 <div className={style.radioButtons}>
                     <div className={style.selection}>
-                        <input type="radio" name = "sortBy" value = "alphabetically" onChange = {(e)=>handleOnChange(e)}/>
+                        <input type="radio" name = "sortBy" value = "alphabetically" 
+                        checked = {sortBy === 'alphabetically'?true:false} onChange = {(e)=>handleOnChange(e)}/>
                         <label >Alphabetically</label>
                     </div>
                     <div className={style.selection}>
-                        <input type="radio" name = "sortBy" value = "rating" onChange = {(e)=>handleOnChange(e)}/>
+                        <input type="radio" name = "sortBy" value = "rating" 
+                        checked = {sortBy === 'rating'?true:false} onChange = {(e)=>handleOnChange(e)}/>
                         <label > Rating </label>
                     </div>
                 </div>

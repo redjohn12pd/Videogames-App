@@ -23,7 +23,7 @@ export const sortDescAlpha = (data)=>{
 }
 
 export const sortAscRating = (data)=>{
-    return data.sort((a,b)=>a.rating - b.rating)
+    return data.sort((a,b)=>Number.parseInt(a.rating) - Number.parseInt(b.rating) )
 }
 
 export const sortDescRating = (data)=>{

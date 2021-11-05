@@ -13,6 +13,15 @@ export function getGenres(){
     }
 }
 
+export function getPlatforms(){
+    return function(dispatch){
+        axios.get(`${URL}/platforms`)
+        .then(platforms=>{
+            dispatch({type: GET_PLATFORMS,payload:platforms.data})
+        });
+    }
+}
+
 export function getVideogames(payload){
     return function(dispatch){
         axios.get(`${URL}/videogames${payload ? "?"+ payload.type+"=" + payload.value:""}`)

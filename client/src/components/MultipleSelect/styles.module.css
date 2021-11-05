@@ -1,0 +1,29 @@
+.items{
+display: flex;
+flex-direction: column;
+ max-height: 150px;
+ width: 150px;
+ overflow: hidden;
+ overflow-y: scroll;
+ scroll-behavior: smooth;
+ list-style: none; 
+}
+.item{
+  display: flex;
+  align-items: center;
+  justify-content: flex-center;
+  font-size: 10px;
+
+}
+.item input{
+    width: 10px;
+}
+.items::-webkit-scrollbar {
+    width: 8px; 
+    max-height: 1px;
+}
+  .items::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(158, 11, 163, 0.6);
+  }
