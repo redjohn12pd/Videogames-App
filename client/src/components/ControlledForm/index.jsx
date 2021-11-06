@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './styles.module.css';
 import { getGenres, getPlatforms, postVideogame } from '../../actions';
 import MultipleSelect from '../MultipleSelect'
-const ControlledForm = () => {
+const ControlledForm = ({getData}) => {
     const dispatch = useDispatch();
     const [form, setForm] = useState({
         name: '',
@@ -56,9 +56,14 @@ const ControlledForm = () => {
         })
     }
     const handleOnChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        if(name === 'name' || name ==='backgroundImage'){
+            getData(name, value)
+        }
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [name]: value
         })
     }
     const handleSubmit = (e) => {
@@ -115,7 +120,7 @@ const ControlledForm = () => {
             <div className={style.formItem}>
                 <label>Videogame Image</label>
                 <input onChange={(e) => handleOnChange(e)} name={'backgroundImage'}
-                    value={form.backgroundImage} type="file" style={{ color: 'white' }} />
+                    value={form.backgroundImage} placeholder = "Enter the videogame image"/>
             </div>
             <input className={style.button} type="submit" value="Create Game" />
         </form>

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import ControlledForm from './components/ControlledForm';
+import CreateVideogame from './components/CreateVideogame';
 const App = ()=> {
   return (
     <React.Fragment>
@@ -12,8 +12,8 @@ const App = ()=> {
       <Route exact path = "/home">
         <Home/>
       </Route>
-      <Route exact path = "/create/videogame">
-        <ControlledForm />
+      <Route exact path = "/videogame/create">
+        <CreateVideogame />
       </Route>
     </Switch>
     </React.Fragment>
