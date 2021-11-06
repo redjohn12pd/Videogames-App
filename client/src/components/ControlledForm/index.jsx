@@ -7,13 +7,13 @@ import MultipleSelect from '../MultipleSelect'
 const ControlledForm = ({getData}) => {
     const dispatch = useDispatch();
     const [form, setForm] = useState({
-        name: '',
-        description: '',
-        launchDate: '',
+        name: undefined,
+        description: undefined,
+        launchDate: ' ',
         rating: 0,
         genres: [],
         platforms: [],
-        backgroundImage: ''
+        backgroundImage: ' '
     })
     const genres = useSelector(state => state.genres);
     const platforms = useSelector(state => state.platforms);
@@ -58,13 +58,21 @@ const ControlledForm = ({getData}) => {
     const handleOnChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        if(name === 'name' || name ==='backgroundImage'){
-            getData(name, value)
+        if(!/^\s/.test(value)){
+            if(name === 'name' || name ==='backgroundImage'){
+                getData(name, value)
+            }
+            setForm({
+                ...form,
+                [name]: value
+            })
+        }else{
+            setForm({
+                ...form,
+                [name]: ''
+            })
         }
-        setForm({
-            ...form,
-            [name]: value
-        })
+        
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -80,12 +88,15 @@ const ControlledForm = ({getData}) => {
             <h2 className={style.title}>Create Videogame</h2>
             <div className={style.formItem}>
                 <label>Name</label>
-                <input onChange={(e) => handleOnChange(e)} name={'name'} value={form.name} placeholder='Enter the name of the game' />
+                <input onChange={(e) => handleOnChange(e)} name={'name'} value={form.name} 
+                style = {{'border-color':form.name === ''?'crimson':'black'}} placeholder='Enter the name of the game' />
+                {form.name === ''? <span className = {style.required}>Name is required</span>:null}
             </div>
-
             <div className={style.formItem}>
                 <label>Description</label>
-                <textarea rows="8" onChange={(e) => handleOnChange(e)} name={'description'} value={form.description} placeholder='Enter the description of the game' />
+                <textarea rows="8" onChange={(e) => handleOnChange(e)} name={'description'} 
+                 style = {{'border-color':form.description === ''?'crimson':'black'}} value={form.description} placeholder='Enter the description of the game' />
+                {form.description === ''? <span className = {style.required}>Description is required</span>:null}
             </div>
 
             <div className={style.formItem}>
