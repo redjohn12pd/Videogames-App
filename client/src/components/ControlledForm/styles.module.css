@@ -10,9 +10,14 @@
     justify-content: space-between;
     padding-bottom: 8%;
     width: 85%;
+    color: black;
 }
 .formItem input{
     height: 25px;
+    color:black;
+}
+.formItem textarea{
+    color:black;
 }
 .formItem select{
     height: 40px;
@@ -28,6 +33,22 @@
 }
 .select{
     margin-right: 17%; 
+}
+.button{
+    background-color: rgba(197, 13, 166, 0.89);
+    border-color: #44083a;
+    border-radius: 6px;
+    border-width: 1px;
+    color: #f7eeee;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    margin-left: 150px;
+    text-align: center;
+    height: 40px;
+}
+.button:hover{
+    background-color: rgba(59, 5, 50, 0.89);
 }
 .title{
     margin-bottom: 10px;

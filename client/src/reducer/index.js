@@ -1,6 +1,6 @@
 import {
     GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS, FILTER_VIDEOGAMES,
-    SORT_VIDEOGAMES
+    SORT_VIDEOGAMES, POST_VIDEOGAME
 } from '../actions/constant.js';
 import { sortAscAlpha, sortDescAlpha, sortAscRating, sortDescRating } from '../utilitys/SortingMethods.js';
 const initialState = {
@@ -121,6 +121,8 @@ export default function reducer(state = initialState, { type, payload }) {
                 ...state,
                 genres: [...payload]
             }
+        case POST_VIDEOGAME:
+            return state;
         default:
             return state;
     }

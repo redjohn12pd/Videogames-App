@@ -1,5 +1,5 @@
 import {GET_VIDEOGAMES, GET_VIDEOGAME, GET_GENRES, GET_PLATFORMS,
-FILTER_VIDEOGAMES, SORT_VIDEOGAMES} from './constant.js';
+FILTER_VIDEOGAMES, SORT_VIDEOGAMES, POST_VIDEOGAME} from './constant.js';
 const axios = require('axios').default;
 const URL = "http://localhost:3001/api";
 
@@ -36,6 +36,12 @@ export function getVideogame(payload){
         .then(videogame=>{
             dispatch({type: GET_VIDEOGAME,payload:videogame})
         });
+    }
+}
+export function postVideogame(payload){
+    return function(dispatch){
+        axios.post(URL+'/videogames',payload)
+        .then(response=>dispatch({type: POST_VIDEOGAME, payload:response}))
     }
 }
 export function filterVideogames(payload){
