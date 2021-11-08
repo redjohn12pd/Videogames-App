@@ -143,7 +143,7 @@ module.exports = {
                  genres.map(async(genre)=>{
                        const result = await Genre.findOne({
                            where:{
-                               name: genre
+                               id: genre
                            }
                        })
                        if(result)
@@ -152,7 +152,7 @@ module.exports = {
                    platforms.map(async(platform)=>{
                     const result = await Platform.findOne({
                         where:{
-                            name: platform
+                            id: platform
                         }
                     })
                     if(result)

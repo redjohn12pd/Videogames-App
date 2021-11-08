@@ -2,7 +2,6 @@ import React from 'react';
 import style from './styles.module.css';
 
 const DetailCard = ({ game }) => {
-    console.log(game.id + ''.length)
     return (
         <div className={style.detailCard}>
             <h1>{game.name}</h1>
@@ -15,7 +14,7 @@ const DetailCard = ({ game }) => {
                 <h2>Available in</h2>
                 {
                     game.platforms?.map((platform, index) =>
-                        <label key={index} className={style.label}> {game.id + ''.length < 8 ? platform.platform.name : platform.name} </label>
+                        <label key={index} className={style.label}> {game.id + ''.length < 8 ? platform.platform.name : 'hola'} </label>
                     )}
             </div>
         </div>

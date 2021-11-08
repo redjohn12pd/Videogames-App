@@ -39,8 +39,6 @@ export function getVideogame(payload){
     }
 }
 export function postVideogame(payload){
-    console.log("desee axios");
-    console.log(payload);
     return function(dispatch){
         axios.post(URL+'/videogames',payload)
         .then(response=>dispatch({type: POST_VIDEOGAME, payload:response}))
