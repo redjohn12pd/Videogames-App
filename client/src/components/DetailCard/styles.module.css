@@ -1,0 +1,52 @@
+.detailCard{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    text-align:center;
+    background-color: rgba(0, 0, 0, 0.808);
+    border-radius: 1rem;
+    border:4px solid rgb(8, 2, 8);
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px 3px rgba(158, 11, 163, 0.6);
+    max-height:470px;
+    max-width: 300px;
+    min-width: 300px;
+    color: white;
+    transform: scale(1);
+    transition: all 1s;
+    padding-top:10px;
+}
+.detailCard:hover{
+    transform: scale(1.1);
+    transition: all 1s;
+}
+.detailCard ul{
+  padding-left:10px;
+  padding-right:10px;
+  text-align:left;
+  list-style:none;
+  margin-bottom: 25px;
+}
+.detailCard li{
+  font-size: 20px;
+  margin-top:20px;
+}
+.label{
+  background-color: rgba(197, 13, 166);
+  color: white;
+  margin-right: 3px;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  padding: 0 15px;
+  line-height: 25px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 20px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  max-height: 25px; 
+}
+.label:hover{
+  background-color: rgba(59, 5, 50, 0.89);
+}

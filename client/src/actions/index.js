@@ -32,13 +32,15 @@ export function getVideogames(payload){
 }
 export function getVideogame(payload){
     return function(dispatch){
-        axios.get(`${URL}/videogames/${payload}`)
+         axios.get(`${URL}/videogames/${payload}`)
         .then(videogame=>{
             dispatch({type: GET_VIDEOGAME,payload:videogame})
         });
     }
 }
 export function postVideogame(payload){
+    console.log("desee axios");
+    console.log(payload);
     return function(dispatch){
         axios.post(URL+'/videogames',payload)
         .then(response=>dispatch({type: POST_VIDEOGAME, payload:response}))

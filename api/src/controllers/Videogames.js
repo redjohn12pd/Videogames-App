@@ -97,10 +97,12 @@ module.exports = {
                     .then(result => result.data)
                     .then(data => {
                         const videoGame = {
+                            id: data.id,
                             name: data.name,
                             description: data.description,
                             launchDate: data.released,
                             rating: data.rating,
+                            genres: data.genres,
                             platforms: data.platforms,
                             backgroundImage: data.background_image
                         }
@@ -112,9 +114,10 @@ module.exports = {
                     where: {
                         id: id
                     },
-                    include: {
-                        model: Genre
-                    }
+                    include: [
+                        {model:Genre},
+                        {model:Platform}
+                      ]
                 });
                 return res.status(200).json(result);
             }

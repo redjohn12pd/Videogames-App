@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {useDispatch , useSelector} from 'react-redux';
 import { getVideogames, getGenres} from '../../actions';
 import SideBar from '../SideBar';

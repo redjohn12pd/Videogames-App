@@ -21,10 +21,37 @@
     left: 0;
     background-position: bottom center;
     box-shadow: 0 8px 16px rgb(0 0 0 / 10%);
-    transform: rotate(
-0.01deg);
+border-radius: 0.25rem;
+}
+.footerCard{
+    position: absolute;
+    bottom:0;
 }
 .title{
     font-size: 20px;
     background-color: rgba(0, 0, 0, 0.808);
+}
+.labels{
+    display:flex;
+    justify-content: center;
+    margin:auto;
+    margin-top:3px;
+}
+.label{
+   background-color: rgba(197, 13, 166);
+   color: white;
+   margin-right: 3px;
+   margin-bottom: 3px;
+   padding: 0 15px;
+   line-height: 25px;
+   font-size: 10px;
+   font-weight: 700;
+   border-radius: 20px;
+   display: inline-block;
+   vertical-align: top;
+   text-align: center;
+   max-height: 25px; 
+}
+.label:hover{
+   background-color: rgba(59, 5, 50, 0.89);
 }

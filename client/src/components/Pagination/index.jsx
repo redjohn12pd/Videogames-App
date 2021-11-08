@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link} from 'react-router-dom';
 import style from './styles.module.css';
 import SimpleCard from '../SimpleCard';
 const renderData = (title,data) => {
@@ -7,9 +8,10 @@ const renderData = (title,data) => {
     <h1>{title}</h1>
     <ul className = {style.gridContainer}>
       {data.map((data, index) => {
-        return <li key={index}>
-                <SimpleCard name = {data.name} url = {data.backgroundImage}/>
-               </li>;
+        return <Link key={index} to = {`/videogame/detail/${data.id}`}><li>
+                <SimpleCard name = {data.name} url = {data.backgroundImage} genres = {data.genres}/>
+               </li>
+               </Link>
       })}
     </ul>
     </>

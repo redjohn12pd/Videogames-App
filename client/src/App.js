@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import CreateVideogame from './components/CreateVideogame';
+import DetailsVideogame from './components/DetailsVideogame';
 const App = ()=> {
   return (
     <React.Fragment>
@@ -12,8 +13,11 @@ const App = ()=> {
       <Route exact path = "/home">
         <Home/>
       </Route>
-      <Route exact path = "/videogame/create">
+      <Route exact path = "/videogames/create">
         <CreateVideogame />
+      </Route>
+      <Route exact path = "/videogame/detail/:id">
+        <DetailsVideogame />
       </Route>
     </Switch>
     </React.Fragment>

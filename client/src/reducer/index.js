@@ -6,6 +6,7 @@ import { sortAscAlpha, sortDescAlpha, sortAscRating, sortDescRating } from '../u
 const initialState = {
     auxVideogames: [],
     videogames: [],
+    videogame: {},
     genres: [],
     platforms: [],
     filterVideogames: [],
@@ -13,17 +14,19 @@ const initialState = {
 }
 export default function reducer(state = initialState, { type, payload }) {
     switch (type) {
-        case GET_GENRES:
-            return {
-                ...state,
-                genres: payload
-            };
         case GET_VIDEOGAMES:
 
             return {
                 ...state,
                 videogames: payload,
                 auxVideogames: payload,
+            };
+        case GET_VIDEOGAME:
+            payload = payload.data[0]?payload.data[0]:payload.data;
+            console.log(payload)
+            return {
+                ...state,
+                videogame: payload,
             };
 
         case FILTER_VIDEOGAMES:
@@ -102,6 +105,8 @@ export default function reducer(state = initialState, { type, payload }) {
                             sortingFilterGames = sortingFilterGames ? sortDescAlpha(sortingFilterGames) : [];
                             auxVideogames = sortDescAlpha(auxVideogames);
                         }
+                        break;
+                    default:
                         break;
                 }
             }

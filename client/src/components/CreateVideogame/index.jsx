@@ -8,6 +8,7 @@ const CreateVideogame = ()=>{
     const [state, setState] = useState({
         name: '',
         backgroundImage: '',
+        genres:[],
     })
 
     const getData = (name, value)=>{
@@ -21,7 +22,8 @@ const CreateVideogame = ()=>{
         <ControlledForm getData = {getData}/>
         <div className = {style.cardContainer}>
             <h2 style = {{"margin-bottom":25}}>Game Preview</h2>
-        <SimpleCard name = {state.name} url = {state.backgroundImage?state.backgroundImage:imgPrev}/>
+        <SimpleCard name = {state.name} url = {state.backgroundImage?state.backgroundImage:imgPrev}
+        genres = {state.genres}/>
         </div>
         </div>
     )
