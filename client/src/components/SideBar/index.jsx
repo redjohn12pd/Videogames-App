@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import style from './styles.module.css';
-import {ReactComponent as BurgerMenu} from './resources/burger_menu.svg';
+import {ReactComponent as Bimo} from './resources/bemo.svg';
 const SideBar = ({title, width, height, children})=>{
     const [sideBar, setsideBar] = useState({
         position:-width,
@@ -38,7 +38,7 @@ const SideBar = ({title, width, height, children})=>{
         >
           <h2>{title}</h2>
           <div onClick={() => handleClick()} className={style.close} style={{ transform: `translate(${width}px, 20vh)`}}>
-          <BurgerMenu/>
+          <Bimo/>
           </div>
           <div className={style.items}>{children}</div>
         </div>

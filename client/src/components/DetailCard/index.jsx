@@ -14,7 +14,7 @@ const DetailCard = ({ game }) => {
                 <h2>Available in</h2>
                 {
                     game.platforms?.map((platform, index) =>
-                        <label key={index} className={style.label}> {game.id + ''.length < 8 ? platform.platform.name : platform.name} </label>
+                        <label key={index} className={style.label}> {platform.hasOwnProperty('platform')? platform.platform.name : platform.name} </label>
                     )}
             </div>
         </div>

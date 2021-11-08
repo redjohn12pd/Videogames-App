@@ -6,11 +6,15 @@ import Home from './components/Home';
 import CreateVideogame from './components/CreateVideogame';
 import SuccessCreate from './components/CreateVideogame/SuccessCreate.jsx';
 import DetailsVideogame from './components/DetailsVideogame';
+import LandingPage from './components/LandingPage';
 const App = ()=> {
   return (
     <React.Fragment>
     <NavBar/>
     <Switch>
+      <Route exact path = "/">
+        <LandingPage/>
+      </Route>
       <Route exact path = "/home">
         <Home/>
       </Route>
