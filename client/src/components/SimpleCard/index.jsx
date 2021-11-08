@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './styles.module.css';
-const Card = ({ name, url, genres }) => {
+const Card = ({ name, url, genres, limit}) => {
     return (
         <div className={style.card}>
             <div className={style.bodyCard} style={{
@@ -17,7 +17,7 @@ const Card = ({ name, url, genres }) => {
                     <div className={style.labels}>
                         {genres &&
                             genres.map((data, index) =>
-                                index <3 ? <span className={style.label} key={index}>{data.name}</span> : null
+                                index < limit ? <span className={style.label} key={index}>{data.name}</span> : null
                             )}
                     </div>
                 </div>

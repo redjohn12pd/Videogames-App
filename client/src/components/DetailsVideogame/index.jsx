@@ -24,6 +24,7 @@ const DetailsVideogame = ()=>{
                 name = {videogame.name}
                 url = {videogame.backgroundImage}
                 genres = {videogame.genres}
+                limit = {videogame.genres&&videogame.genres.length}
                 />}
                 </div>
                 <div className = {style.containerDescription}>

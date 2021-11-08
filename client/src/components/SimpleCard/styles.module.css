@@ -36,6 +36,8 @@ border-radius: 0.25rem;
     justify-content: center;
     margin:auto;
     margin-top:3px;
+    overflow: hidden;
+    max-width: 415px;
 }
 .label{
    background-color: rgba(197, 13, 166);
@@ -44,13 +46,15 @@ border-radius: 0.25rem;
    margin-bottom: 3px;
    padding: 0 15px;
    line-height: 25px;
-   font-size: 10px;
+   font-size: 8px;
    font-weight: 700;
    border-radius: 20px;
    display: inline-block;
    vertical-align: top;
    text-align: center;
+   overflow: hidden;
    max-height: 25px; 
+   max-width: 40px;
 }
 .label:hover{
    background-color: rgba(59, 5, 50, 0.89);

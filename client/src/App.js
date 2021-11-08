@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import CreateVideogame from './components/CreateVideogame';
+import SuccessCreate from './components/CreateVideogame/SuccessCreate.jsx';
 import DetailsVideogame from './components/DetailsVideogame';
 const App = ()=> {
   return (
@@ -15,6 +16,9 @@ const App = ()=> {
       </Route>
       <Route exact path = "/videogames/create">
         <CreateVideogame />
+      </Route>
+      <Route exact path = "/videogames/create/success">
+        <SuccessCreate/>
       </Route>
       <Route exact path = "/videogame/detail/:id">
         <DetailsVideogame />

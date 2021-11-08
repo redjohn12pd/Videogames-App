@@ -1,0 +1,23 @@
+.search{
+    margin-right: 10px;
+}
+.input{
+    height: 30px;
+    width: 300px;
+    color: black;
+}
+.button{
+    background-color: rgba(197, 13, 166, 0.89);
+    border-color: #44083a;
+    border-radius: 6px;
+    border-width: 1px;
+    color: #f7eeee;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    text-align: center;
+    height: 40px;
+}
+.button:hover{
+    background-color: rgba(59, 5, 50, 0.89);
+}

@@ -9,7 +9,7 @@ const renderData = (title,data) => {
     <ul className = {style.gridContainer}>
       {data.map((data, index) => {
         return <Link key={index} to = {`/videogame/detail/${data.id}`}><li>
-                <SimpleCard name = {data.name} url = {data.backgroundImage} genres = {data.genres}/>
+                <SimpleCard name = {data.name} url = {data.backgroundImage} genres = {data.genres} limit ={2}/>
                </li>
                </Link>
       })}

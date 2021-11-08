@@ -10,3 +10,49 @@
     width: 300px;
     text-align: center;
 }
+.containerSuccess{
+    position: fixed;
+    top:70px;
+    bottom:0;
+    width: 100%;
+    align-items: center;
+    background-image: url('../../resources/preview.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+.buttons{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+.buttons button{
+    background-color: rgba(197, 13, 166, 0.89);
+    border-color: #44083a;
+    border-radius: 6px;
+    border-width: 1px;
+    color: #f7eeee;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    text-align: center;
+    height: 40px;
+}
+.buttons button:hover{
+    background-color: rgba(59, 5, 50, 0.89);
+}
+.overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.568);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

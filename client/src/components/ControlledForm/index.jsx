@@ -1,11 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import style from './styles.module.css';
 import { getGenres, getPlatforms, postVideogame } from '../../actions';
 import MultipleSelect from '../MultipleSelect'
-const ControlledForm = ({getData}) => {
+const ControlledForm = ({ getData }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [form, setForm] = useState({
@@ -18,10 +18,11 @@ const ControlledForm = ({getData}) => {
         backgroundImage: '',
     })
     const [error, setError] = useState({
-        name: undefined,
-        description: undefined,
+        name: '',
+        description: '',
         genres: undefined,
         platforms: undefined,
+        backgroundImage: '',
     })
     let genres = useSelector(state => state.genres);
     let platforms = useSelector(state => state.platforms);
@@ -76,42 +77,45 @@ const ControlledForm = ({getData}) => {
             description: undefined,
             genres: undefined,
             platforms: undefined,
+            backgroundImage: undefined
         })
     }
     const handleOnChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        if(!/^\s/.test(value)){
-            if(name === 'name' || name ==='backgroundImage'){
+        if (value.length > 0 && value.length < 255) {
+            if (name === 'name' && name === 'backgroundImage') {
                 getData(name, value)
             }
-            setForm({
-                ...form,
-                [name]: value
-            })
-            setError({
-                ...error,
-                [name]: value
-            })
-        }else{
             setError({
                 ...error,
                 [name]: ''
             })
+        } else {
+            let textError;
+            if (name === 'backgroundImage') textError = value.length === 0?'':'enter up to 255 characters';
+            if (name === 'name') textError = 'Name is required';
+            if (name === 'description') textError = value.length>255?'enter up to 255 characters':'Description is required';
+            setError({
+                ...error,
+                [name]: textError,
+            })
         }
-        
+        setForm({
+            ...form,
+            [name]: value
+        })
     }
-    const isEmpty = ()=>{
-        return error.name === '' || error.description === '' 
-        || form.genres.length === 0 || form.platforms.length === 0;
+    const isValidate = () => {
+        return error.name === '' && error.description === '' && error.backgroundImage === ''
+            && form.genres.length > 0 && form.platforms.length > 0;
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!isEmpty()){
-            dispatch(postVideogame(form));
-            cleanForm();
-            history.push('/home')
-        }else{
+        if (isValidate()) {
+            dispatch(postVideogame(form))
+            history.push('/videogames/create/success')
+        } else {
             alert("Some fields cannot be empty!")
         }
     }
@@ -124,21 +128,21 @@ const ControlledForm = ({getData}) => {
             <h2 className={style.title}>Create Videogame</h2>
             <div className={style.formItem}>
                 <label>Name</label>
-                <input onChange={(e) => handleOnChange(e)} name={'name'} value={form.name} 
-                style = {{borderColor:error.name === ''?'crimson':'black'}} placeholder='Enter the name of the game' />
-                {error.name === ''? <span className = {style.required}>Name is required</span>:null}
+                <input onChange={(e) => handleOnChange(e)} name={'name'} value={form.name}
+                    style={{ borderColor: error.name === 'Name is required' ? 'crimson' : 'black' }} placeholder='Enter the name of the game' />
+                {error.name === 'Name is required' ? <span className={style.required}>{error.name}</span> : null}
             </div>
             <div className={style.formItem}>
                 <label>Description</label>
-                <textarea rows="8" onChange={(e) => handleOnChange(e)} name={'description'} 
-                 style = {{borderColor:error.description === ''?'crimson':'black'}} value={form.description} placeholder='Enter the description of the game' />
-                {error.description === ''? <span className = {style.required}>Description is required</span>:null}
+                <textarea rows="8" onChange={(e) => handleOnChange(e)} name={'description'}
+                    style={{ borderColor: error.description&&error.description.length>0 ? 'crimson' : 'black' }} value={form.description} placeholder='Enter the description of the game' />
+                {error.description&&error.description.length>0? <span className={style.required}>{error.description}</span> : null}
             </div>
             <div className={style.formItem}>
                 <label>Launch Date</label>
                 <input style={{ color: "black", width: 130 }} type="date"
                     min="1950-01-01" max="2022-12-31"
-                    onChange={(e) => handleOnChange(e)} name={'launchDate'}/>
+                    onChange={(e) => handleOnChange(e)} name={'launchDate'} />
             </div>
             <div className={style.formItem}>
                 <label>Rating</label>
@@ -154,21 +158,22 @@ const ControlledForm = ({getData}) => {
                 <div className={style.containerSelects}>
                     <div className={style.select}>
                         <label>Genres</label>
-                        <MultipleSelect getAllSelected={getSelectedGenres} data={genres}/>
-                        {error.genres === '' && !form.genres.length? <span className = {style.required}>you must select at least one genre</span>:null}
+                        <MultipleSelect getAllSelected={getSelectedGenres} data={genres} />
+                        {error.genres === '' && !form.genres.length ? <span className={style.required}>you must select at least one genre</span> : null}
                     </div>
                     <div className={style.select}>
                         <label>Platforms</label>
-                        <MultipleSelect getAllSelected={getSelectedPlatforms} data={platforms}/>
-                        {error.platforms === '' && !form.platforms.length? <span className = {style.required}>you must select at least one platform</span>:null}
+                        <MultipleSelect getAllSelected={getSelectedPlatforms} data={platforms} />
+                        {error.platforms === '' && !form.platforms.length ? <span className={style.required}>you must select at least one platform</span> : null}
                     </div>
                 </div>
             </div>
 
             <div className={style.formItem}>
                 <label>Videogame Image</label>
-                <input onChange={(e) => handleOnChange(e)} name={'backgroundImage'}
-                    value={form.backgroundImage} placeholder = "Enter the videogame image"/>
+                <textarea rows="4" onChange={(e) => handleOnChange(e)} name={'backgroundImage'}
+                    style={{ borderColor: error.backgroundImage === 'Enter up to 255 characters' ? 'crimson' : 'black' }} value={form.backgroundImage} placeholder="Enter the videogame image" />
+                {error.backgroundImage === 'enter up to 255 characters' ? <span className={style.required}>{error.backgroundImage}</span> : null}
             </div>
             <input className={style.button} type="submit" value="Create Game" />
         </form>
