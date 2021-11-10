@@ -10,8 +10,7 @@ import Filter from '../Filter';
 import style from './styles.module.css';
 const Home = () => {
     const genres = useSelector(state => state.genres);
-    const videogames = useSelector(state => state.videogames);
-    const aux = useSelector(state => state.auxVideogames);
+    const {videogames, isEmpty} = useSelector(state => state);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getGenres());
@@ -20,10 +19,10 @@ const Home = () => {
     return (
         <div className={style.container}>
             {
-                aux.length === 0 ?
+                videogames.length === 0 ?
                     <div className={style.loading}>
                         <div className={style.overlay}>
-                            <LoadingPage />
+                            <LoadingPage isEmpty = {!isEmpty}/>
                         </div>
                     </div>
                     : null

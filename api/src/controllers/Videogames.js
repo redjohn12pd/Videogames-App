@@ -2,7 +2,6 @@ require('dotenv').config();
 const axios = require('axios').default;
 const { KEY } = process.env;
 const { Videogame, Genre, Platform, Op} = require('../db.js');
-//const controllerCrud = new ModelCrud({Videogame, Genre});
 const filterVideogames = (videogames, genre)=>{
     const filter = [];
     videogames.forEach(game=>{
@@ -26,7 +25,7 @@ module.exports = {
             resultPromiseDB = await Videogame.findAll({
                 where: {
                     name: {
-                        [Op.like]: `%${name.toUpperCase()}%`
+                        [Op.like]: `${name.toUpperCase()}%`
                       }
                 },
                 include:{
@@ -83,7 +82,6 @@ module.exports = {
             allVideogames = resultPromiseDB.concat(resultPromiseApi);
                     if(genre && genre !== 'All'){
                         allVideogames = filterVideogames(allVideogames, genre);
-                       
                     }
              return res.status(200).json(allVideogames);
             }catch(error){

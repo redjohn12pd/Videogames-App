@@ -11,24 +11,28 @@ import LandingPage from './components/LandingPage';
 const App = ()=> {
   return (
     <React.Fragment>
-    <NavBar/>
     <Switch>
       <Route exact path = "/">
         <LandingPage/>
       </Route>
       <Route exact path = "/home">
+        <NavBar/>
         <Home/>
       </Route>
       <Route exact path = "/videogames">
+        <NavBar/>
         <VideogamesResult />
       </Route>
       <Route exact path = "/videogames/create">
+        <NavBar/>
         <CreateVideogame />
       </Route>
       <Route exact path = "/videogames/create/success">
+       <NavBar/>
         <SuccessCreate/>
       </Route>
       <Route exact path = "/videogame/detail/:id">
+      <NavBar/>
         <DetailsVideogame />
       </Route>
     </Switch>

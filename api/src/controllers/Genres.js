@@ -4,7 +4,6 @@ const axios = require('axios').default;
 const {KEY} = process.env;
 module.exports = {
     getGenres: async(req, res, next)=>{
-
         try{
             let genresDB = await Genre.findAll();
             if(genresDB.length<1){

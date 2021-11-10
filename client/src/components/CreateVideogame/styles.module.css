@@ -6,7 +6,7 @@
     flex-direction: column;
     position: fixed;
     margin-left: 63%;
-    margin-top: 100px;
+    margin-top: 150px;
     width: 300px;
     text-align: center;
 }
@@ -43,7 +43,8 @@
     padding-right: 10px;
     margin: 10px;
     text-align: center;
-    height: 40px;
+    height: 60px;
+    font-size: 40px;
 }
 .buttons button:hover{
     background-color: rgba(59, 5, 50, 0.89);
@@ -55,4 +56,11 @@
     bottom: 0;
     right: 0;
     left: 0;
+}
+.titleOverlay{
+    background-color: rgba(0, 0, 0, 0.616);
+    margin-bottom:15px;
+}
+.titleBig{
+    font-size: 45px;
 }

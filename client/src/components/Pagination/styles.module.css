@@ -2,7 +2,7 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 80%;
+    max-width: 82%;
     margin-left: 135px;
     margin-top: 90px;
 }
@@ -47,13 +47,4 @@
   .pagination li button:focus {
     outline: none;
   }
-  
-  @media (min-width: 300px) and (max-width: 767.98px) { 
-      .container{
-          margin-left:10px;
-          width:100%;
-      }
-      .gridContainer{
-      
-      }
-   }
+ 

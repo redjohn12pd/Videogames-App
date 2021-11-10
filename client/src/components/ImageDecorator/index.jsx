@@ -1,6 +1,4 @@
 import React from 'react';
-import style from './styles.module.css';
-
 const ImageDecorator = ({url,top,bottom,left,right,width,height})=> {
     return(
         <div style = {{
@@ -10,7 +8,7 @@ const ImageDecorator = ({url,top,bottom,left,right,width,height})=> {
             left: left,
             right: right
         }}>
-        <img style = {{ width: width, height:height }} src = {url}/>
+        <img style = {{ width: width, height:height }} src = {url} alt = {'not found'} />
         </div>
     );
  }

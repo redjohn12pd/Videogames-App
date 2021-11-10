@@ -10,7 +10,7 @@ import LoadingPage from '../LoadingPage';
 const DetailsVideogame = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const videogame = useSelector(state => state.videogame)
+    const {videogame, isEmpty} = useSelector(state => state)
     useEffect(() => {
         dispatch(getVideogame(id))
     }, [dispatch, id]);
@@ -20,7 +20,7 @@ const DetailsVideogame = () => {
                 videogame.id + '' !== '' + id &&
                 <div className={style.loading}>
                     <div className={style.overlay}>
-                        <LoadingPage />
+                        <LoadingPage isEmpty = {!isEmpty} />
                     </div>
                 </div>
             }

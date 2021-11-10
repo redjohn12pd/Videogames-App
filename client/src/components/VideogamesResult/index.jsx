@@ -21,17 +21,13 @@ const VideogamesResult = () => {
                 <Filter genres={genres} videogames={videogames} />
             </SideBar>
             {
-                !isEmpty ? videogames.length === 0 ?
+                videogames.length === 0 ?
                     <div className={style.loading}>
                         <div className={style.overlay}>
-                            <LoadingPage />
+                            <LoadingPage isEmpty = {isEmpty}/>
                         </div>
                     </div>
                     : null
-                    :
-                    <div className={style.notFound}>
-                    <h1>Sorry, there is no match to the title entered...</h1>
-                    </div>
             }
             <div className={style.row}>
                 {videogames.length > 0 && <Pagination title={"Games"} data={videogames} />}

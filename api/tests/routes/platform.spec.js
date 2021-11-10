@@ -16,9 +16,9 @@ describe('Platform routes', () => {
   }));
   beforeEach(() => Platform.sync({ force: true })
     .then(() => Platform.create(platform)));
-  describe('GET /api/platform', () => {
+  describe('GET /api/platforms', () => {
     it('should get 200', () =>
-      agent.get('/api/platform').expect(200)
+      agent.get('/api/platforms').expect(200)
     );
   });
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom';
 import style from './styles.module.css';
 import SimpleCard from '../SimpleCard';
@@ -69,7 +69,7 @@ function Pagination(props) {
   const handlePrevbtn = () => {
     setcurrentPage(currentPage - 1);
 
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
@@ -77,12 +77,12 @@ function Pagination(props) {
 
   let pageIncrementBtn = null;
   if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
+    pageIncrementBtn = <li onClick={handleNextbtn}>; </li>;
   }
 
   let pageDecrementBtn = null;
   if (minPageNumberLimit >= 1) {
-    pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
+    pageDecrementBtn = <li onClick={handlePrevbtn}>; </li>;
   }
 
   return (
@@ -90,7 +90,7 @@ function Pagination(props) {
       {currentItems.length>0?renderData(props.title,currentItems):null}
       <ul className={style.pagination}>
         <li>
-          <button onClick={handlePrevbtn} disabled={currentPage == pages[0] ? true : false}>
+          <button onClick={handlePrevbtn} disabled={currentPage === pages[0] ? true : false}>
             Prev
           </button>
         </li>
@@ -98,7 +98,7 @@ function Pagination(props) {
         {renderPageNumbers}
         {pageIncrementBtn}
         <li>
-          <button onClick={handleNextbtn} disabled={currentPage == pages[pages.length - 1] ? true : false}>
+          <button onClick={handleNextbtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>
             Next
           </button>
         </li>

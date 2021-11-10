@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     description:{
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(600),
       allowNull: false
     },
     launchDate:{
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     backgroundImage:{
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(600),
       allowNull: true
     }
 

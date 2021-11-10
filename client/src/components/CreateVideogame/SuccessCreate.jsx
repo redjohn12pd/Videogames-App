@@ -13,7 +13,7 @@ const SuccessCreate = ()=>{
         <div className = {style.containerSuccess}>
             <div className = {style.overlay}>
             <div className = {style.items}>
-            <h1>Congratulations, your video game was successfully created!</h1>
+            <h1 className = {style.titleBig}>Congratulations, your video game was successfully created!</h1>
             <div className = {style.buttons}>
             <button name = {'home'} onClick = {e=>handleOnClick(e)}>Go home</button>
             <button name = {'back'} onClick = {e=>handleOnClick(e)}>Go back</button>

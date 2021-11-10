@@ -60,42 +60,22 @@ const ControlledForm = ({ getData }) => {
             genres: ''
         })
     }
-    const cleanForm = () => {
-        setForm({
-            ...form,
-            name: '',
-            description: '',
-            launchDate: '',
-            rating: 0,
-            genres: [],
-            platforms: [],
-            backgroundImage: '',
-        })
-        setError({
-            ...error,
-            name: undefined,
-            description: undefined,
-            genres: undefined,
-            platforms: undefined,
-            backgroundImage: undefined
-        })
-    }
     const handleOnChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         if (name === 'name' || name === 'backgroundImage') {
             getData(name, value)
         }
-        else if (value.length > 0 && value.length < 255) {
+        else if (value.length > 0 && value.length < 600) {
             setError({
                 ...error,
                 [name]: ''
             })
         } else {
             let textError;
-            if (name === 'backgroundImage') textError = value.length === 0?'':'enter up to 255 characters';
+            if (name === 'backgroundImage') textError = value.length === 0?'':'enter up to 600 characters';
             if (name === 'name') textError = 'Name is required';
-            if (name === 'description') textError = value.length>255?'enter up to 255 characters':'Description is required';
+            if (name === 'description') textError = value.length>600?'enter up to 600 characters':'Description is required';
             setError({
                 ...error,
                 [name]: textError,
@@ -172,8 +152,8 @@ const ControlledForm = ({ getData }) => {
             <div className={style.formItem}>
                 <label>Videogame Image</label>
                 <textarea rows="4" onChange={(e) => handleOnChange(e)} name={'backgroundImage'}
-                    style={{ borderColor: error.backgroundImage === 'Enter up to 255 characters' ? 'crimson' : 'black' }} value={form.backgroundImage} placeholder="Enter the videogame image" />
-                {error.backgroundImage === 'enter up to 255 characters' ? <span className={style.required}>{error.backgroundImage}</span> : null}
+                    style={{ borderColor: error.backgroundImage === 'Enter up to 600 characters' ? 'crimson' : 'black' }} value={form.backgroundImage} placeholder="Enter the videogame image" />
+                {error.backgroundImage === 'enter up to 600 characters' ? <span className={style.required}>{error.backgroundImage}</span> : null}
             </div>
             <input className={style.button} type="submit" value="Create Game" />
         </form>

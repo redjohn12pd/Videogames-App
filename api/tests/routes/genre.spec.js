@@ -15,7 +15,7 @@ describe('Genre routes', () => {
     console.error('Unable to connect to the database:', err);
   }));
   beforeEach(() => Genre.sync({ force: true })
-    .then(() => Videogame.create(genre)));
+    .then(() => Genre.create(genre)));
   describe('GET /api/genres', () => {
     it('should get 200', () =>
       agent.get('/api/genres').expect(200)
