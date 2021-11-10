@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 120px;
 }
 .buttons{
     display: flex;
@@ -32,6 +32,7 @@
     padding-right: 10px;
     margin: 10px;
     text-align: center;
+    font-size: 20px;
     height: 40px;
 }
 .buttons button:hover{

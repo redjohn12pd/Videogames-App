@@ -83,10 +83,10 @@ const ControlledForm = ({ getData }) => {
     const handleOnChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        if (value.length > 0 && value.length < 255) {
-            if (name === 'name' && name === 'backgroundImage') {
-                getData(name, value)
-            }
+        if (name === 'name' || name === 'backgroundImage') {
+            getData(name, value)
+        }
+        else if (value.length > 0 && value.length < 255) {
             setError({
                 ...error,
                 [name]: ''

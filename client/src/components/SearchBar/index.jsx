@@ -6,31 +6,29 @@ import {getVideogames} from '../../actions';
 import style from './styles.module.css';
 
 const SearchBar = ()=>{
-   //const history = useHistory();
+    const history = useHistory();
     const [input,setInput] = useState("");
-    const [error,setError] = useState("")
     const dispatch = useDispatch();
     const handleOnClick = (e)=>{
         e.preventDefault();
-       // history.push("/Animes");
         dispatch(getVideogames({type: 'name', value:input}));
-        setInput("");
-        setError("");
+        history.push(`/videogames?search=${input}`);
     };
     const handleOnChange = (value)=>{
-        if(value === ""){
-            setError("Please enter a title to continue!")
-        }else{
-            setError("")
-        }
         setInput(value);
+        if(value === ""){
+            history.push(`/home`);
+        }else{
+            dispatch(getVideogames({type: 'name', value:value}));
+            history.push(`/videogames?search=${value}`);
+        }
     };
     return(
         <form onSubmit={(e)=>{handleOnClick(e)}} className = {style.search}>
-            <input className = {style.input} onChange = {e=>handleOnChange(e.target.value)} value ={input} placeholder ={error===""?"Look your favorite game...":error}></input>
+            <input className = {style.input} onChange = {e=>handleOnChange(e.target.value)} value ={input} ></input>
            <button disabled = {input === ""?true:false} type ="submit" className={style.button}
            style = {{backgroundColor: input === ""? 'gray':null}}>
-           Search Anime
+           Search Game
            </button>
         </form>
     )

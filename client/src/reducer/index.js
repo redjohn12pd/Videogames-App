@@ -10,20 +10,21 @@ const initialState = {
     genres: [],
     platforms: [],
     filterVideogames: [],
-    currentFilter: []
+    currentFilter: [],
+    isEmpty:true,
 }
 export default function reducer(state = initialState, { type, payload }) {
     switch (type) {
         case GET_VIDEOGAMES:
-
+            const isEmpty = payload.length === 0? true: false
             return {
                 ...state,
                 videogames: payload,
                 auxVideogames: payload,
+                isEmpty,
             };
         case GET_VIDEOGAME:
             payload = payload.data[0]?payload.data[0]:payload.data;
-            console.log(payload)
             return {
                 ...state,
                 videogame: payload,

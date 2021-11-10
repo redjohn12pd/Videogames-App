@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    width: 100%;
 
 }
 .row{
@@ -20,9 +21,16 @@
 }
 .overlay {
     position: absolute;
-    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, .5);
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
+}
+.notFound{
+    display: flex;
+    margin-left: 35%;
+    margin-top: 22%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.671);
 }

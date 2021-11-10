@@ -1,22 +1,9 @@
 import React from 'react';
-import { useEffect, useState} from 'react';
 import style from './styles.module.css';
 const DinamicBanner = ({data})=>{
-  const [state, setState] = useState(0);
-  const generatePosition = ()=>{
-    return Math.floor( Math.floor(Math.random()*data.length));
-  }
-  useEffect(()=>{
-    const pos = generatePosition();
-    if(pos>data.length)
-    setState(0)
-    else{
-      setState(pos);
-    }
-  },[data])
     return(
         <div className={style.cover} style = {{
-            backgroundImage: "url(" + `${state<=data.length ? data[state].backgroundImage ? data[state].backgroundImage:data[state+1].backgroundImage:data[0].backgroundImage}` + ")",
+            backgroundImage: "url(" + `${data.backgroundImage}` + ")",
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",

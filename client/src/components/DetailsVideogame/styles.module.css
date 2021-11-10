@@ -33,12 +33,31 @@
     border:4px solid rgb(8, 2, 8);
     box-shadow: 4px 4px 4px 3px rgba(158, 11, 163, 0.6);
     }
-    .description::-webkit-scrollbar {
+.description::-webkit-scrollbar {
         width: 8px; 
         max-height: 1px;
     }
-      .description::-webkit-scrollbar-thumb {
+.description::-webkit-scrollbar-thumb {
           background: #ccc;
           border-radius: 0.25rem;
           border: 1px solid rgba(158, 11, 163, 0.6);
       }
+.loading{
+        position: fixed;
+        top:0;
+        left:0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        min-height: 100vh;
+    }
+.overlay {
+        position: absolute;
+        background: rgb(0, 0, 0);
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }

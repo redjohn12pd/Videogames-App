@@ -12,7 +12,6 @@ const Filter = ({genres, videogames}) => {
         const value = e.target.value;
         const name = e.target.name
         if(name === "genre"){
-            console.log(value)
             value === 'All' ? dispatch(getVideogames()):
             dispatch(getVideogames({type:"genre", value:value}));
             setShowVideogames("showAll")

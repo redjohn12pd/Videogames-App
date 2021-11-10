@@ -12,6 +12,7 @@ const CreateVideogame = ()=>{
     })
 
     const getData = (name, value)=>{
+        console.log(name, value)
         setState({
             ...state,
             [name]: value,
@@ -21,7 +22,7 @@ const CreateVideogame = ()=>{
         <div className = {style.container}>
         <ControlledForm getData = {getData}/>
         <div className = {style.cardContainer}>
-            <h2 style = {{"margin-bottom":25}}>Game Preview</h2>
+            <h1 style = {{"margin-bottom":25}}>Game Preview</h1>
         <SimpleCard name = {state.name} url = {state.backgroundImage?state.backgroundImage:imgPrev}
         genres = {state.genres}/>
         </div>
