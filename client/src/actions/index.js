@@ -3,7 +3,6 @@ FILTER_VIDEOGAMES, SORT_VIDEOGAMES, POST_VIDEOGAME} from './constant.js';
 const axios = require('axios').default;
 const URL = "http://localhost:3001/api";
 
-
 export function getGenres(){
     return function(dispatch){
         axios.get(`${URL}/genres`)
@@ -12,7 +11,6 @@ export function getGenres(){
         });
     }
 }
-
 export function getPlatforms(){
     return function(dispatch){
         axios.get(`${URL}/platforms`)
@@ -21,7 +19,6 @@ export function getPlatforms(){
         });
     }
 }
-
 export function getVideogames(payload){
     return function(dispatch){
         axios.get(`${URL}/videogames${payload ? "?"+ payload.type+"=" + payload.value:""}`)
