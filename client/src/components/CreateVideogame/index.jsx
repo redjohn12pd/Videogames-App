@@ -22,7 +22,7 @@ const CreateVideogame = ()=>{
         <div className = {style.container}>
         <ControlledForm getData = {getData}/>
         <div className = {style.cardContainer}>
-            <h1 className = {style.titleOverlay}>Game Preview</h1>
+        <h1 className = {style.titleOverlay}>Game Preview</h1>
         <SimpleCard name = {state.name} url = {state.backgroundImage?state.backgroundImage:imgPrev}
         genres = {state.genres}/>
         </div>
